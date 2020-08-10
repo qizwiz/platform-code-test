@@ -10,7 +10,7 @@ describe '#update_quality' do
 
     context 'when quality is updated' do
       before do
-        update_quality([award])
+        award.update_quality
       end
 
       context 'given a normal award' do
@@ -224,7 +224,9 @@ describe '#update_quality' do
 
     context 'when quality is updated' do
       before do
-        update_quality(awards)
+        awards.map do |award|
+          award.update_quality
+        end
       end
 
       specify { expect(awards[0].quality).to eq(9) }
