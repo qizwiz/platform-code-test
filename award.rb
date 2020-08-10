@@ -84,9 +84,8 @@ class Award
 
   def normal_award_quality_rule
     return @quality = 0 if zero_quality?
-    decrement_quality_by 1 if before_expiration?
-    decrement_quality_by 2 if on_expiration?
-    decrement_quality_by 2 if after_expiration?
+    @quality -= 1 if before_expiration?
+    @quality -= 2 if on_expiration? || after_expiration?
   end
 
   def blue_compare_quality_rule
@@ -101,10 +100,6 @@ class Award
     return @quality = 0 if zero_quality?
     @quality -= 2 if before_expiration?
     @quality -= 4 if on_expiration? || after_expiration?
-  end
-
-  def decrement_quality_by value
-    @quality -= value
   end
 
 end
